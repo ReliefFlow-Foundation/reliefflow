@@ -1,6 +1,6 @@
-# Supply Chain Provenance Refactor — #970
+# Supply Chain Provenance Refactor — #483
 
-**Author:** Funmilayo Adewumi  **Date:** 2026-02-17
+**Author:** Chinyere Okafor  **Date:** 2026-02-17
 
 ## Overview
 
