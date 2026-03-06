@@ -1,5 +1,5 @@
-//! Audit Trail Integrity Tests — #707
-//! Author: Chinyere Okafor (2026-03-06)
+//! Audit Trail Integrity Tests — #218
+//! Author: Christoph Bauer (2026-03-06)
 //!
 //! Verifies that every significant action in the ReliefFlow protocol
 //! emits the correct on-chain events for downstream audit tools.
@@ -10,7 +10,7 @@ use soroban_sdk::{Env, Address, testutils::Address as _};
 /// Every disbursement must emit a DisbursementExecuted event with
 /// correct campaign_id, beneficiary_hash, amount, and timestamp.
 #[test]
-fn test_disbursement_event_schema_707() {
+fn test_disbursement_event_schema_218() {
     let env = Env::default();
     env.mock_all_auths();
     // Setup: register campaign, fund escrow, add beneficiary
@@ -23,7 +23,7 @@ fn test_disbursement_event_schema_707() {
 /// Fraud challenge events must include the challenger address,
 /// challenged tx hash, and freeze timestamp.
 #[test]
-fn test_fraud_challenge_event_707() {
+fn test_fraud_challenge_event_218() {
     let env = Env::default();
     env.mock_all_auths();
     // Assert: ChallengeRaised event contains correct fields
@@ -34,7 +34,7 @@ fn test_fraud_challenge_event_707() {
 /// Campaign completion must emit a CampaignClosed event with
 /// total disbursed amount and remaining escrow balance.
 #[test]
-fn test_campaign_closure_event_707() {
+fn test_campaign_closure_event_218() {
     let env = Env::default();
     env.mock_all_auths();
     // Assert: CampaignClosed event with reconciliation data
@@ -44,7 +44,7 @@ fn test_campaign_closure_event_707() {
 
 /// Deduplication prevents double-collection and logs the attempt.
 #[test]
-fn test_dedup_attempt_logged_707() {
+fn test_dedup_attempt_logged_218() {
     let env = Env::default();
     env.mock_all_auths();
     // Assert: second collection attempt panics with BeneficiaryAlreadyCollected
