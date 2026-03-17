@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://reliefflow.xyz/schemas/mission/v369",
+  "$id": "https://reliefflow.xyz/schemas/mission/v418",
   "title": "ReliefFlow Humanitarian Mission Metadata Schema",
-  "description": "Defines the IPFS-linked metadata structure for aid campaigns registered in the ReliefFlow Aid Escrow contract. Version 369.",
+  "description": "Defines the IPFS-linked metadata structure for aid campaigns registered in the ReliefFlow Aid Escrow contract. Version 418.",
   "type": "object",
   "required": ["campaign_id", "mission_type", "target_region", "beneficiary_count", "total_budget_usdc", "lead_organization", "start_date", "ipfs_evidence_cid"],
   "properties": {
