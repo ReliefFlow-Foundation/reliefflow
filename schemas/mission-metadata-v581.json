@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://reliefflow.xyz/schemas/mission/v581",
+  "title": "ReliefFlow Humanitarian Mission Metadata Schema",
+  "description": "Defines the IPFS-linked metadata structure for aid campaigns registered in the ReliefFlow Aid Escrow contract. Version 581.",
+  "type": "object",
+  "required": ["campaign_id", "mission_type", "target_region", "beneficiary_count", "total_budget_usdc", "lead_organization", "start_date", "ipfs_evidence_cid"],
+  "properties": {
+    "campaign_id": {
+      "type": "integer",
+      "description": "On-chain campaign ID from the Aid Escrow contract",
+      "minimum": 1
+    },
+    "mission_type": {
+      "type": "string",
+      "enum": ["food_distribution", "medical_supplies", "shelter", "water_sanitation", "education", "emergency_cash", "livelihood"],
+      "description": "Primary humanitarian intervention type"
+    },
+    "target_region": {
+      "type": "object",
+      "required": ["country_code", "admin_region", "coordinates"],
+      "properties": {
+        "country_code": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "admin_region": { "type": "string", "description": "State, province, or district" },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+            "lon": { "type": "number", "minimum": -180, "maximum": 180 }
+          }
+        }
+      }
+    },
+    "beneficiary_count": {
+      "type": "integer",
+      "description": "Expected number of unique beneficiaries",
+      "minimum": 1
+    },
+    "total_budget_usdc": {
+      "type": "number",
+      "description": "Total campaign budget in USDC",
+      "minimum": 0
+    },
+    "lead_organization": {
+      "type": "string",
+      "description": "Primary humanitarian organization running the campaign"
+    },
+    "partner_organizations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Co-implementing partners"
+    },
+    "start_date": { "type": "string", "format": "date" },
+    "end_date": { "type": "string", "format": "date" },
+    "ipfs_evidence_cid": {
+      "type": "string",
+      "description": "IPFS CID of the needs assessment and beneficiary list documentation",
+      "pattern": "^Qm[1-9A-HJ-NP-Za-km-z]{44}$"
+    },
+    "donor_stellar_addresses": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^G[A-Z2-7]{55}$" },
+      "description": "Stellar addresses of campaign funders (optional — donors may remain anonymous)"
+    },
+    "dedup_region": {
+      "type": "string",
+      "description": "Deduplication scope — beneficiaries are unique within this region",
+      "enum": ["campaign", "organization", "country", "global"]
+    }
+  }
+}
