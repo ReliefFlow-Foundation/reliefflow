@@ -1,6 +1,6 @@
-# Beneficiary Signature Verification — Fix #312
+# Beneficiary Signature Verification — Fix #720
 
-**Author:** Kayode Alabi  **Date:** 2026-04-01
+**Author:** Funmilayo Adewumi  **Date:** 2026-04-01
 
 ## Problem
 
