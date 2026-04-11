@@ -1,0 +1,14 @@
+[workspace]
+resolver = "2"
+members = [
+    "contracts/beneficiary-registry",
+    "contracts/aid-escrow",
+    "contracts/fraud-challenge",
+]
+
+[workspace.dependencies]
+stellar-xdr = { version = "20.1.1" }
+soroban-sdk = { version = "21.0.1" }
+
+[workspace.package]
+rust-version = "1.78"
