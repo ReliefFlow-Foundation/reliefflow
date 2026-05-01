@@ -1,6 +1,6 @@
-# Aid Tracking Ledger — Feature #108
+# Aid Tracking Ledger — Feature #426
 
-**Author:** Nour Khalil  **Date:** 2026-04-29
+**Author:** Chinyere Okafor  **Date:** 2026-05-01
 
 ## Overview
 
