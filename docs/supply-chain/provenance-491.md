@@ -1,6 +1,6 @@
-# Supply Chain Provenance Refactor — #981
+# Supply Chain Provenance Refactor — #491
 
-**Author:** Kayode Alabi  **Date:** 2026-05-01
+**Author:** Nour Khalil  **Date:** 2026-05-03
 
 ## Overview
 
