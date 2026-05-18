@@ -223,23 +223,31 @@ export default function ReliefFlowPage() {
 
       <WalletModal isOpen={walletOpen} onClose={() => setWalletOpen(false)} wallet={wallet} />
 
-      {/* HEADER */}
+      {/* HEADER — left accent bar, urgent aid feel */}
       <header className="fixed top-0 inset-x-0 z-50">
         <div className={cn(
-          "mx-4 mt-4 flex items-center justify-between px-5 py-3 rounded-2xl border backdrop-blur-xl",
-          isDark ? "bg-stone-950/70 border-stone-800" : "bg-white/80 border-amber-200"
+          "relative flex items-center h-16 border-b backdrop-blur-xl",
+          isDark ? "bg-stone-950/92 border-stone-800" : "bg-white/95 border-stone-200"
         )}>
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-rose-500 flex items-center justify-center shadow-lg shadow-amber-500/30">
-              <Heart className="w-5 h-5 text-white" />
+          {/* Left gradient accent bar */}
+          <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-amber-400 via-rose-500 to-amber-600" />
+
+          {/* Logo block — separated by right border */}
+          <div className={cn(
+            "flex items-center gap-3 pl-6 pr-6 h-full border-r shrink-0",
+            isDark ? "border-stone-800" : "border-stone-200"
+          )}>
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-rose-500 flex items-center justify-center">
+              <Heart className="w-4 h-4 text-white" />
             </div>
             <div>
-              <span className={cn("font-black text-lg uppercase tracking-tight leading-none block", isDark ? "text-white" : "text-stone-900")}>ReliefFlow</span>
-              <span className="text-[9px] font-bold text-amber-500 uppercase tracking-[0.4em]">Soroban · Mainnet</span>
+              <span className={cn("font-black text-sm uppercase tracking-[0.12em] leading-none block", isDark ? "text-white" : "text-stone-900")}>ReliefFlow</span>
+              <span className="text-[7px] font-mono text-amber-500/80 uppercase tracking-[0.4em]">Aid Protocol</span>
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-6">
+          {/* Nav */}
+          <nav className="hidden md:flex items-center flex-1 px-8 gap-7">
             {[
               { label: "Programs", href: "/programs" },
               { label: "Disbursement", href: "/disbursement" },
@@ -249,27 +257,36 @@ export default function ReliefFlowPage() {
               { label: "Roadmap", href: "/roadmap" },
             ].map(({ label, href }) => (
               <a key={href} href={href}
-                className={cn("text-[11px] font-bold uppercase tracking-widest transition-colors hover:text-amber-500",
-                  isDark ? "text-stone-500" : "text-stone-500")}
-              >{label}</a>
+                className={cn(
+                  "text-[11px] font-bold uppercase tracking-widest transition-colors hover:text-amber-500 relative group",
+                  isDark ? "text-stone-500" : "text-stone-500"
+                )}
+              >
+                {label}
+                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-amber-500 group-hover:w-full transition-all duration-200" />
+              </a>
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          {/* Right: live counter + controls */}
+          <div className={cn(
+            "flex items-center h-full border-l pl-5 pr-5 gap-4 shrink-0",
+            isDark ? "border-stone-800" : "border-stone-200"
+          )}>
+            <div className="hidden lg:block text-right border-r border-stone-800 pr-4 mr-1">
+              <div className="text-[7px] font-mono text-stone-600 uppercase tracking-widest">Active Campaigns</div>
+              <div className="text-sm font-black text-amber-400 leading-none">12</div>
+            </div>
             <ThemeToggle isDark={isDark} />
             {wallet.address ? (
-              <button
-                onClick={() => setWalletOpen(true)}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest bg-amber-500/10 border border-amber-500/20 text-amber-400 hover:bg-amber-500/20 transition-all"
-              >
-                <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                <span className="font-mono">{wallet.address.slice(0, 4)}…{wallet.address.slice(-4)}</span>
+              <button onClick={() => setWalletOpen(true)}
+                className="flex items-center gap-2 px-3 py-1.5 text-[10px] font-mono font-bold bg-amber-500/10 border border-amber-500/20 text-amber-400 hover:bg-amber-500/15 transition-all">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                {wallet.address.slice(0, 4)}…{wallet.address.slice(-4)}
               </button>
             ) : (
-              <button
-                onClick={() => setWalletOpen(true)}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest bg-gradient-to-r from-amber-500 to-rose-500 text-white shadow-lg shadow-amber-500/20 hover:opacity-90 transition-all"
-              >
+              <button onClick={() => setWalletOpen(true)}
+                className="flex items-center gap-2 px-4 py-2 text-[11px] font-black uppercase tracking-widest bg-gradient-to-r from-amber-500 to-rose-500 text-white hover:opacity-90 transition-all">
                 <Wallet className="w-3.5 h-3.5" /> Connect
               </button>
             )}
